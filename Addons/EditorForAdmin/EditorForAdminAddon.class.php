@@ -22,8 +22,8 @@ use Common\Controller\Addon;
 			'title'=>'后台编辑器',
 			'description'=>'用于增强整站长文本的输入和显示',
 			'status'=>1,
-			'author'=>'成都龙兵科技',
-			'url'=>'http://www.xbjianzhan.com',
+			'author'=>'佛山市振鸿集团',
+			'url'=>'http://zhenhong.liiking.com',
 			'version'=>'0.2'
 		);
 

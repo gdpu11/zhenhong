@@ -147,12 +147,12 @@ CREATE TABLE `xiaobing360_addons` (
 -- -----------------------------
 -- Records of `xiaobing360_addons`
 -- -----------------------------
-INSERT INTO `xiaobing360_addons` VALUES ('15', 'EditorForAdmin', '后台编辑器', '用于增强整站长文本的输入和显示', '1', '{\"editor_type\":\"2\",\"editor_wysiwyg\":\"1\",\"editor_markdownpreview\":\"0\",\"editor_height\":\"500px\",\"editor_resize_type\":\"1\"}', '成都龙兵科技', '0.1', '1383126253', '0');
-INSERT INTO `xiaobing360_addons` VALUES ('2', 'SiteStat', '站点统计信息', '统计站点的基础信息', '1', '{\"title\":\"\\u7cfb\\u7edf\\u4fe1\\u606f\",\"width\":\"1\",\"display\":\"1\",\"status\":\"0\"}', '成都龙兵科技', '0.1', '1379512015', '0');
-INSERT INTO `xiaobing360_addons` VALUES ('3', 'DevTeam', '开发团队信息', '开发团队成员信息', '1', '{\"title\":\"OneThink\\u5f00\\u53d1\\u56e2\\u961f\",\"width\":\"2\",\"display\":\"1\"}', '成都龙兵科技', '0.1', '1379512022', '0');
-INSERT INTO `xiaobing360_addons` VALUES ('4', 'SystemInfo', '系统环境信息', '用于显示一些服务器的信息', '1', '{\"title\":\"\\u7cfb\\u7edf\\u4fe1\\u606f\",\"width\":\"2\",\"display\":\"1\"}', '成都龙兵科技', '0.1', '1379512036', '0');
-INSERT INTO `xiaobing360_addons` VALUES ('5', 'Editor', '前台编辑器', '用于增强整站长文本的输入和显示', '1', '{\"editor_type\":\"2\",\"editor_wysiwyg\":\"1\",\"editor_height\":\"300px\",\"editor_resize_type\":\"1\"}', '成都龙兵科技', '0.1', '1379830910', '0');
-INSERT INTO `xiaobing360_addons` VALUES ('6', 'Attachment', '附件', '用于文档模型上传附件', '1', 'null', '成都龙兵科技', '0.1', '1379842319', '1');
+INSERT INTO `xiaobing360_addons` VALUES ('15', 'EditorForAdmin', '后台编辑器', '用于增强整站长文本的输入和显示', '1', '{\"editor_type\":\"2\",\"editor_wysiwyg\":\"1\",\"editor_markdownpreview\":\"0\",\"editor_height\":\"500px\",\"editor_resize_type\":\"1\"}', '佛山市振鸿集团', '0.1', '1383126253', '0');
+INSERT INTO `xiaobing360_addons` VALUES ('2', 'SiteStat', '站点统计信息', '统计站点的基础信息', '1', '{\"title\":\"\\u7cfb\\u7edf\\u4fe1\\u606f\",\"width\":\"1\",\"display\":\"1\",\"status\":\"0\"}', '佛山市振鸿集团', '0.1', '1379512015', '0');
+INSERT INTO `xiaobing360_addons` VALUES ('3', 'DevTeam', '开发团队信息', '开发团队成员信息', '1', '{\"title\":\"OneThink\\u5f00\\u53d1\\u56e2\\u961f\",\"width\":\"2\",\"display\":\"1\"}', '佛山市振鸿集团', '0.1', '1379512022', '0');
+INSERT INTO `xiaobing360_addons` VALUES ('4', 'SystemInfo', '系统环境信息', '用于显示一些服务器的信息', '1', '{\"title\":\"\\u7cfb\\u7edf\\u4fe1\\u606f\",\"width\":\"2\",\"display\":\"1\"}', '佛山市振鸿集团', '0.1', '1379512036', '0');
+INSERT INTO `xiaobing360_addons` VALUES ('5', 'Editor', '前台编辑器', '用于增强整站长文本的输入和显示', '1', '{\"editor_type\":\"2\",\"editor_wysiwyg\":\"1\",\"editor_height\":\"300px\",\"editor_resize_type\":\"1\"}', '佛山市振鸿集团', '0.1', '1379830910', '0');
+INSERT INTO `xiaobing360_addons` VALUES ('6', 'Attachment', '附件', '用于文档模型上传附件', '1', 'null', '佛山市振鸿集团', '0.1', '1379842319', '1');
 
 -- -----------------------------
 -- Table structure for `xiaobing360_attachment`
@@ -602,7 +602,7 @@ CREATE TABLE `xiaobing360_banner` (
 -- -----------------------------
 -- Records of `xiaobing360_banner`
 -- -----------------------------
-INSERT INTO `xiaobing360_banner` VALUES ('1', '第一行', '5', 'http://www.xbjianzhan.com/', '0', '0');
+INSERT INTO `xiaobing360_banner` VALUES ('1', '第一行', '5', 'http://zhenhong.liiking.com/', '0', '0');
 
 -- -----------------------------
 -- Table structure for `xiaobing360_category`
@@ -787,7 +787,7 @@ INSERT INTO `xiaobing360_config` VALUES ('54', 'WEB_M_TMPL', '4', '手机站模�
 INSERT INTO `xiaobing360_config` VALUES ('83', 'WEB_M_CLOSED', '4', '手机站状态', '8', '0:关闭,1:开启', '', '1461640065', '1479524928', '1', '1', '0');
 INSERT INTO `xiaobing360_config` VALUES ('86', 'WEB_FAVICON', '5', 'favicon.ico图标', '9', '', '网站的缩略标志，可以显示在浏览器标签、地址栏左边和收藏夹，是展示网站个性的缩略logo标志。', '1463387941', '1480385827', '1', '', '0');
 INSERT INTO `xiaobing360_config` VALUES ('87', 'COM_ADDRESS', '3', '地址', '5', '', '', '1469716652', '1469716664', '1', '成都市府城大道西段399号', '12');
-INSERT INTO `xiaobing360_config` VALUES ('93', 'COM_BAIDUMAP', '3', '百度地图信息', '5', '', '获取地址:http://api.map.baidu.com/lbsapi/creatmap/', '1479456283', '1479456324', '1', '104.061494\r\n30.594085\r\n成都龙兵科技\r\n成都市府城大道西段399号', '20');
+INSERT INTO `xiaobing360_config` VALUES ('93', 'COM_BAIDUMAP', '3', '百度地图信息', '5', '', '获取地址:http://api.map.baidu.com/lbsapi/creatmap/', '1479456283', '1479456324', '1', '104.061494\r\n30.594085\r\n佛山市振鸿集团\r\n成都市府城大道西段399号', '20');
 INSERT INTO `xiaobing360_config` VALUES ('91', 'COM_M_LOGO', '5', '手机LOGO', '8', '', '', '1476772049', '1479524930', '1', '', '5');
 INSERT INTO `xiaobing360_config` VALUES ('92', 'LINKS_TYPE', '3', '友情链接分组类型', '2', '', '', '1479448563', '1479448583', '1', '1:友情链接\r\n2:合作伙伴\r\n3:申请链接', '20');
 INSERT INTO `xiaobing360_config` VALUES ('94', 'XIAOBING360_URL_MODEL', '4', 'URL模式', '4', '1:精简模式\r\n2:兼容模式', '兼容模式一般应用在IIS6或伪静态错误的情况下', '1479520858', '1479521459', '1', '2', '0');
@@ -1146,7 +1146,7 @@ CREATE TABLE `xiaobing360_links` (
 -- -----------------------------
 -- Records of `xiaobing360_links`
 -- -----------------------------
-INSERT INTO `xiaobing360_links` VALUES ('1', '成都网站制作', 'http://www.xbjianzhan.com', '0', '0', '0', '1');
+INSERT INTO `xiaobing360_links` VALUES ('1', '成都网站制作', 'http://zhenhong.liiking.com', '0', '0', '0', '1');
 INSERT INTO `xiaobing360_links` VALUES ('2', '网站建设公司', 'http://www.scjianzhan.cn', '0', '0', '0', '1');
 INSERT INTO `xiaobing360_links` VALUES ('3', '尚层装饰', 'http://www.shangceng.org', '0', '0', '0', '1');
 INSERT INTO `xiaobing360_links` VALUES ('4', '成都庆典公司', 'http://www.cdxfs.cn', '0', '0', '0', '1');

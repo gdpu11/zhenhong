@@ -158,7 +158,7 @@ php;
     public function _xiaobing($tag, $content){
         $color= empty($tag['color'])?"":$tag['color'];
         $str=<<<php
-<span class="jishuzhichi">技术支持：<a href="http://www.xbjianzhan.com" title="成都网站建设" target="_blank">成都网站建设</a><a href="http://www.xbjianzhan.com" title="龙兵科技" target="_blank">龙兵科技</a></span>
+<span class="jishuzhichi">技术支持：<a href="http://zhenhong.liiking.com" title="成都网站建设" target="_blank">成都网站建设</a><a href="http://zhenhong.liiking.com" title="龙兵科技" target="_blank">龙兵科技</a></span>
 <style>
 .jishuzhichi{color:$color;}
 .jishuzhichi a{color:$color;text-decoration:none;}

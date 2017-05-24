@@ -21,8 +21,8 @@ class AttachmentAddon extends Addon{
 		'title'       => '附件',
 		'description' => '用于文档模型上传附件',
 		'status'      => 1,
-		'author'=>'成都龙兵科技',
-	    'url'=>'http://www.xbjianzhan.com',
+		'author'=>'佛山市振鸿集团',
+	    'url'=>'http://zhenhong.liiking.com',
 		'version'     => '0.1'
 	);
 

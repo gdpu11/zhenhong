@@ -207,7 +207,7 @@ function get_ico(){
     $return = '<link href="'. $path .'" rel="bookmark" type="image/x-icon" /> ';
     $return .= '<link href="'. $path .'" rel="icon" type="image/x-icon" />  ';
     $return .= '<link href="'. $path .'" rel="shortcut icon" type="image/x-icon" />  ';
-    $return .= '<meta name="author" content="成都网站建设龙兵科技 http://www.xbjianzhan.com" />';
+    $return .= '<meta name="author" content="成都网站建设龙兵科技 http://zhenhong.liiking.com" />';
 	
 
 	return $return;

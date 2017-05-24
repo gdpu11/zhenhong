@@ -23,8 +23,8 @@ use Common\Controller\Addon;
             'title'=>'开发团队信息',
             'description'=>'开发团队成员信息',
             'status'=>1,
-		    'author'=>'成都龙兵科技',
-	        'url'=>'http://www.xbjianzhan.com',
+		    'author'=>'佛山市振鸿集团',
+	        'url'=>'http://zhenhong.liiking.com',
             'version'=>'0.1'
         );
 

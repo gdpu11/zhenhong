@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | Xiaobing360 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2016 http://www.xbjianzhan.com/ All rights reserved.
+// | Copyright (c) 2016 http://zhenhong.liiking.com/ All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: 成都龙兵科技 <1923510186@qq.com> <http://www.xbjianzhan.com>
+// | Author: 佛山市振鸿集团 <1923510186@qq.com> <http://zhenhong.liiking.com>
 // +----------------------------------------------------------------------
 
 
