@@ -1,0 +1,103 @@
+<extend name="Public/base" />
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+
+<block name="body">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title cf">
+		<h2>
+			编辑链接 [
+			<volist name="rightNav" id="nav">
+			<a href="{:U('article/index','cate_id='.$nav['id'])}">{$nav.title}</a>
+			<if condition="count($rightNav) gt $i"><i class="ca"></i></if>
+			</volist>
+			<present name="article">：<a href="{:U('article/index','cate_id='.$info['category_id'].'&pid='.$article['id'])}">{$article.title}</a></present>
+			]
+		</h2>
+	</div>
+	<!-- 标签页导航 -->
+    <div class="tab-wrap">
+        <ul class="tab-nav nav">
+            <li data-tab="tab1" class="current"><a href="javascript:void(0);">基础</a></li>
+            <li data-tab="tab2"><a href="javascript:void(0);">高级</a></li>
+        </ul>
+        <div class="tab-content">
+            <form  id="form"  action="{:U()}" method="post" class="form-horizontal">
+                <!-- 基础 -->
+                <div id="tab1" class="tab-pane in tab1">
+                    <div class="form-item">
+                        <label class="item-label">
+                            分类名称<span class="is_must"> (必填)</span><span class="check-tips">（名称不能为空）</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="title" class="text input-large" value="{$info.title|default=''}">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label class="item-label">
+                            分类附名称<span class="check-tips">（可以作为附加标题和英文名称使用）</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="title_en" class="text input-large" value="{$info.title_en|default=''}">
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="item-label">
+                            链接地址<span class="check-tips">（例如:http://www.baidu.com/）</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="url" class="text input-large" value="{$info.url|default=''}">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab2" class="tab-pane tab2">
+                    <div class="controls">
+                        <label class="item-label">分类图标<span class="check-tips">（用于导航）</span></label>
+                        {:R("Tpl/upload_image",array('icon',$info['icon']))}
+                    </div>
+
+                    <div class="controls">
+                        <label class="item-label">分类缩略图<span class="check-tips">（用于单调用简介）</span></label>
+                        {:R("Tpl/upload_image",array('cover',$info['cover']))}
+                    </div>
+                    <div class="controls">
+                        <label class="item-label">分类横幅<span class="check-tips">（分类横幅(banner)图片）</span></label>
+                        {:R("Tpl/upload_image",array('banner',$info['banner']))}
+                    </div>
+                </div>
+
+
+                <div class="form-item cf">
+                    <button class="btn submit-btn ajax-post hidden" id="submit" type="submit" target-form="form-horizontal">保 存</button>
+                    <input type="hidden" name="id" value="{$info.id|default=''}"/>
+                    <input type="hidden" name="cate_id" value="{$info.id|default=''}"/>
+                </div>
+                </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+$('#submit').click(function(){
+	$('#form').submit();
+});
+
+$(function(){
+
+    showTab();
+
+});
+</script>
+</block>

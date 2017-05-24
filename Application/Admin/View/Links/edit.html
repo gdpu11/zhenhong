@@ -1,0 +1,108 @@
+<extend name="Public/base"/>
+<block name="body">
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title">
+		<h2>
+			{$info['id']?'编辑':'新增'}友情链接
+		</h2>
+	</div>
+	<form action="{:U()}" method="post" class="form-horizontal">
+
+		<div class="form-item">
+			<label class="item-label">网站名称<span class="check-tips">（用于显示的文字）</span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="title" value="{$info.title|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">网站地址<span class="check-tips">（用于调转的URL）</span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="url" value="{$info.url|default=''}">
+			</div>
+		</div>
+
+        <div class="controls">
+            <label class="item-label">Logo图片<span class="check-tips">（前台显示的logo图片）</span></label>
+            <input type="file" id="upload_picture">
+            <input type="hidden" name="logo" id="logo" value="{$info['logo']|default=''}"/>
+            <div class="upload-img-box">
+                <notempty name="info['logo']">
+                    <div class="upload-pre-item"><img src="{$info.logo|get_cover='path'}"/></div>
+                </notempty>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //上传图片
+            /* 初始化上传插件 */
+            $("#upload_picture").uploadify({
+                "height"          : 30,
+                "swf"             : "__STATIC__/uploadify/uploadify.swf",
+                "fileObjName"     : "download",
+                "buttonText"      : "上传图片",
+                "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                "width"           : 120,
+                'removeTimeout'	  : 1,
+                'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+                "onUploadSuccess" : uploadPicture,
+                'onFallback' : function() {
+                    alert('未检测到兼容版本的Flash.');
+                }
+            });
+            function uploadPicture(file, data){
+                var data = $.parseJSON(data);
+                var src = '';
+                if(data.status){
+                    $("#logo").val(data.id);
+                    src = data.url || '__ROOT__' + data.path;
+                    $("#logo").parent().find('.upload-img-box').html(
+                            '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                    );
+                } else {
+                    updateAlert(data.info);
+                    setTimeout(function(){
+                        $('#top-alert').find('button').click();
+                        $(that).removeClass('disabled').prop('disabled',false);
+                    },1500);
+                }
+            }
+        </script>
+
+
+		<div class="form-item">
+			<label class="item-label">优先级<span class="check-tips">（链接显示顺序,值越大,排名越靠前）</span></label>
+			<div class="controls">
+				<input type="text" class="text input-small" name="sort" value="{$info.sort|default='0'}">
+			</div>
+		</div>
+
+
+        <div class="form-item">
+            <label class="item-label">是否隐藏<span class="check-tips">（隐藏后前台不显示此链接）</span></label>
+            <div class="controls">
+                <select name="hide">
+                    <option value="0" <eq name="info.hide" value="0" >selected</eq>>否</option>
+                    <option value="1" <eq name="info.hide" value="1" >selected</eq>>是</option>
+                </select>
+            </div>
+        </div>
+
+
+		<div class="form-item">
+			<input type="hidden" name="id" value="{$info.id|default=''}">
+			<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+</block>
+<block name="script">
+<script type="text/javascript" charset="utf-8">
+	//导航高亮
+    highlight_subnav('{:U("/Links/index")}');
+
+    $(function(){
+
+
+    });
+
+</script>
+</block>

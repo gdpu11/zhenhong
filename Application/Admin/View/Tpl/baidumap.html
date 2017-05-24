@@ -1,0 +1,31 @@
+<textarea name="{$name}" id="baidumap_{$name}">{$value}</textarea>
+<span id="baidumap_{$name}_btn">获取坐标</span>
+<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+
+<script>
+
+    $(function(){
+
+        $('#baidumap_{$name}_btn').click(function(){
+
+            var point = $('#baidumap_{$name}').val();
+            if(point ==''){
+                point = '104.069491,30.658949';
+            }
+            layer.open({
+                type: 2,
+                title: '地图坐标',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['620px', '500px'],
+                content: '/Tools/baidumap/name/baidumap_{$name}/point/' + point + '/width/600px/height/400px' //iframe的url
+            });
+
+
+        });
+
+
+
+    })
+
+</script>

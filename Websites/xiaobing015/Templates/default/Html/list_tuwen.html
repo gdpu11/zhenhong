@@ -1,0 +1,28 @@
+﻿<extend name="Public/base"/>
+<block name="content">
+	<div class="sub_con_r_art line-H18">
+				<div class="article_content" style="font-size: 14px; line-height: 28px; color: rgb(83, 83, 83); font-family: 宋体;">
+					
+						
+					{$category.content}
+					
+				</div>
+	
+	
+		
+               	 	<ul class="list_team">
+					
+					<volist name="list" id="data">
+						<li>
+							<div class="img_Mask"><a href="{$data.href}"><img src="{$data.cover}" width="220" height="198"></a>
+							<div class="team_img_title"><span><a href="{$data.href}"><b>{$data.title|_substr=18}</b></a></span></div></div><a href="{$data.href}"><b>
+							</b>
+							</a>
+
+						</li>
+					</volist>
+						
+					
+				
+				</div>
+</block>

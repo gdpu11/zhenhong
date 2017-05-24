@@ -1,0 +1,97 @@
+<div id="subnav" class="subnav">
+    <ul>
+    <notempty name="_extra_menu">
+        {// 动态扩展菜单 //}
+        {:extra_menu($_extra_menu,$__MENU__)}
+    </notempty>
+    <volist name="__MENU__.child" id="sub_menu">
+        <!-- 子导航 -->
+        <notempty name="sub_menu">
+            <li>
+                <a href=""><i class="fa fa-chevron-circle-right"></i>{$key}<i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="side-sub-menu">
+                    <volist name="sub_menu" id="menu">
+                        <li><a class="item" href="{$menu.url|U}">{$menu.title}</a></li>
+                    </volist>
+                </ul>
+            </li>
+
+        </notempty>
+        <!-- /子导航 -->
+    </volist>
+
+    <li class="sub_menu <in name="Think.ACTION_NAME" value="mydocument,draftbox,examine">current</in>">
+        <a href="" ><i class="fa fa-user"></i>个人中心 <i class="fa fa-plus btn-handle"></i></a>
+        <ul class="side-sub-menu">
+            <li <eq name="Think.ACTION_NAME" value="mydocument">class="current"</eq>><a class="item" href="{:U('article/mydocument')}">我的文档</a>
+            </li>
+            <li <eq name="Think.ACTION_NAME" value="draftbox">class="current"</eq>><a class="item" href="{:U('article/draftbox')}">草稿箱</a></li>
+            <li <eq name="Think.ACTION_NAME" value="examine">class="current"</eq>><a class="item" href="{:U('article/examine')}">待审核</a>
+            </li>
+        </ul>
+    </li>
+
+    <volist name="nodes" id="one_menu">
+        <!-- 子导航 -->
+        <notempty name="one_menu">
+            <!--一级菜单-->
+            <li class="sub_menu <if condition="$one_menu['id'] eq $cate_id">current</if>">
+                <a href="{$one_menu.url|U}">
+                    <i class="fa fa fa-angle-right"></i>{$one_menu.title} 
+                    <notempty name="one_menu['_child']">
+                    <i class="fa fa-plus btn-handle"></i>
+                    </notempty>
+                </a>
+
+                <!--二级菜单-->
+                <notempty name="one_menu['_child']">
+                <ul class="side-sub-menu">
+                    <volist name="one_menu['_child']" id="two_menu">
+                        <li <if condition="$two_menu['id'] eq $cate_id">class="current"</if> >
+                            <a class="item" href="{$two_menu.url|U}">{$two_menu.title}
+                            <notempty name="two_menu['_child']"><i class="fa fa-plus btn-handle"></i></notempty>
+                            </a>
+                            <!--三级级菜单-->
+                            <notempty name="two_menu['_child']">
+                                <ul class="side-sub-menu">
+                                    <volist name="two_menu['_child']" id="three_menu">
+                                        <li <if condition="$three_menu['id'] eq $cate_id">class="current"</if>>
+                                            <a class="item" href="{$three_menu.url|U}">{$three_menu.title}
+                                                <notempty name="three_menu['_child']"><i class="fa fa-plus btn-handle"></i></notempty>
+                                            </a>
+
+											<!--四级级菜单-->
+											<notempty name="three_menu['_child']">
+												<ul class="side-sub-menu">
+													<volist name="three_menu['_child']" id="fourd_menu">
+														<li <if condition="$fourd_menu['id'] eq $cate_id">class="current"</if>>
+															<a class="item" href="{$fourd_menu.url|U}">{$fourd_menu.title}</a>
+														</li>
+													</volist>
+												</ul>
+											</notempty>
+											
+											
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </notempty>
+
+                        </li>
+                    </volist>
+                </ul>
+                </notempty>
+            </li>
+
+        </notempty>
+        <!-- /子导航 -->
+    </volist>
+    <!-- 回收站 -->
+    <li <eq name="Think.ACTION_NAME" value="recycle">class="current"</eq>>
+        <div class="sub-menu-title">
+            <a href="{:U('article/recycle')}"><i class="fa fa-recycle"></i>回收站 </a>
+        </div>
+
+    </li>
+    </ul>
+</div>

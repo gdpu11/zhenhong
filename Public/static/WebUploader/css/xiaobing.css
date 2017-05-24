@@ -1,0 +1,25 @@
+.xiaobing_uploader{
+	
+}
+
+.xiaobing_uploader  .btns {
+    top: 10px;
+    right: 20px;
+    line-height: 30px;
+	background: #00b7ee;
+    color: #fff;
+    border-color: transparent;
+	display: inline-block;
+	text-align: center;
+}
+
+.xiaobing_uploader  .uploader-State {
+    top: 10px;
+    right: 20px;
+    line-height: 30px;
+	
+    color: #000;
+    border-color: transparent;
+	display: inline-block;
+	text-align: center;
+}

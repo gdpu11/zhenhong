@@ -1,0 +1,113 @@
+<extend name="Public/base"/>
+
+<block name="header">
+    <li class="active"><a href="javascript:;">安装协议</a></li>
+    <li class="active"><a href="javascript:;">环境检测</a></li>
+    <li class="active"><a href="javascript:;">创建数据库</a></li>
+    <li><a href="javascript:;"><eq name="Think.session.update" value="1">升级<else/>安装</eq></a></li>
+    <li><a href="javascript:;">完成</a></li>
+</block>
+
+<block name="body">
+    <?php
+        defined('SAE_MYSQL_HOST_M') or define('SAE_MYSQL_HOST_M', '127.0.0.1');
+        defined('SAE_MYSQL_HOST_M') or define('SAE_MYSQL_PORT', '3306');
+    ?>
+    <h2>创建数据库</h2>
+    <style>
+
+        .is_must{
+            color: red;
+        }
+        .tips{
+            font-size: 18px;
+        }
+    </style>
+    <form action="__SELF__" method="post" target="_self" id="dataform">
+        <div class="create-database">
+            <div>
+                <select name="db[]">
+	                <option>mysql</option>
+                </select>
+                <span> <b class="is_must">必填</b> 数据库类型</span>
+            </div>
+            <div>
+                <input type="text" name="db[]" value="<defined name='SAE_MYSQL_HOST_M'>{$Think.const.SAE_MYSQL_HOST_M}<else/>127.0.0.1</defined>" class="check_password">
+                <span><b class="is_must">必填</b> 数据库服务器，数据库服务器IP，一般为127.0.0.1</span>
+            </div>
+            <div>
+                <input type="text" name="db[]" value="<defined name='SAE_MYSQL_DB'>{$Think.const.SAE_MYSQL_DB}</defined>" class="check_password">
+                <span><b class="is_must">必填</b> 数据库名</span>
+            </div>
+            <div>
+                <input type="text" name="db[]" value="<defined name='SAE_MYSQL_USER'>{$Think.const.SAE_MYSQL_USER}</defined>" class="check_password">
+                <span><b class="is_must">必填</b> 数据库用户名</span>
+            </div>
+            <div>
+                <input type="password" name="db[]" value="<defined name='SAE_MYSQL_PASS'>{$Think.const.SAE_MYSQL_PASS}</defined>" class="check_password">
+                <span><b class="is_must">必填</b> 数据库密码</span>
+            </div>
+            <div>
+                <input type="text" name="db[]" value="<defined name='SAE_MYSQL_PORT'>{$Think.const.SAE_MYSQL_PORT}<else/>3306</defined>" class="check_password" >
+                <span><b class="is_must">必填</b> 数据库端口，数据库服务连接端口，一般为3306</span>
+            </div>
+
+
+            <div>
+                <input type="hidden" name="db[]" value="xiaobing360_" readonly>
+                <span id="db_tips"></span>
+            </di>
+        </div>
+
+        <div class="create-database">
+            <h2>创始人帐号信息</h2>
+            <div>
+                <input type="text" name="admin[]" value="xiaobing360">
+                <span><b class="is_must">必填</b> 用户名，默认为xiaobing360</span>
+            </div>
+            <div>
+                <input type="password" name="admin[]" value="xiaobing360">
+                <span><b class="is_must">必填</b> 密码，默认为xiaobing360</span>
+            </div>
+            <div>
+                <input type="password" name="admin[]" value="xiaobing360">
+                <span><b class="is_must">必填</b> 确认密码，默认为xiaobing360</span>
+            </div>
+
+            <div>
+                <input type="text" name="admin[]" value="" class="send_mail">
+                <span><b class="is_must">必填</b> 邮箱，请填写正确的邮箱便于收取提醒邮件</span>
+            </di>
+        </div>
+    </form>
+
+    <script>
+
+        $('.check_password').blur(function(){
+            var $url = '{:U("check_password")}';
+            var $data = $('#dataform').serialize();
+            $.post($url,$data,function(data){
+                $('#db_tips').html(data.info);
+            });
+
+        });
+
+
+        $('.send_mail').blur(function(){
+            var $url = '{:U("send_mail")}';
+            var $data = $('#dataform').serialize();
+            $.post($url,$data,function(data){
+                console.log(data.info);
+            });
+
+        });
+
+    </script>
+
+</block>
+
+<block name="footer">
+    <a class="btn btn-success btn-large" href="{:U('Install/step1')}">上一步</a>
+    <button id="submit" type="button" class="btn btn-primary btn-large" onclick="$('form').submit();return false;">下一步</button>
+    <span class="tips ">&nbsp; &nbsp; &nbsp; &nbsp; 小兵建站CMS技术群(八) ： 321757896  &nbsp; &nbsp; &nbsp; &nbsp; 安装问题、二次开发加群咨询 </span>
+</block>

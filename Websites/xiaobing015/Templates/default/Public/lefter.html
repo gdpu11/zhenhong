@@ -1,0 +1,15 @@
+<ul class="all_list">
+	<li class="list_border_top"></li>
+<cms:cate pid="$tid">	
+	
+	 <if condition="$id eq $data['id']">
+
+		<li class='on'><span class='l_trigon'></span><a href='{$data.href}' class='on'>{$data.title}</a></li>
+            <else />
+
+        <li><span class='l_trigon'></span><a href='{$data.href}' class='on'>{$data.title}</a></li>
+
+    </if>
+</cms:cate>
+	
+</ul>

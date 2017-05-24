@@ -1,0 +1,24 @@
+﻿<extend name="Public/base"/>
+<block name="content">
+               	 	<div class="list_news_list">
+                        <volist name="list" id="data"> 
+						<dl class="news_l">
+                                <dt>
+                                    <ul>
+                                        <li class="f_l"><a href="{$data.href}">{$data.title}</a></li>
+                                        <li style="list-style-type:none; list-style:none" class="f_r">{$data.create_time|date='Y-m-d',###}</li>
+                                    </ul>
+                                </dt>
+                            </dl>
+							</volist>
+
+
+                        
+                        <script type="text/javascript">
+                        $(".list_news_list").find("dl").hover(function(){$(this).addClass("list_bg");},function(){$(this).removeClass("list_bg")})
+                        </script>
+                    </div>
+                    <div class="page_num">
+                        <cms:page cate="$category['id']" listrow="$category['list_row']" />
+               	    </div>
+</block>               

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset>
+    <volist name="list" id="data">
+  <url>
+    <loc>{:C('WEB_SITE_URL')}{$data.href}</loc>
+    <lastmod>{$data.create_time|date='Y-m-d',###}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+      </volist>
+</urlset>

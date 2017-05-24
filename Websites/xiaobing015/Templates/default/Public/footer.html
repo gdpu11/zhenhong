@@ -1,0 +1,76 @@
+ 			   
+	<!-- 页尾 -->
+  <footer class="footer">
+     
+    <div class="container w-980 p-t-20 p-b-20">
+	<a href="/" class="foot-logo fl" style="background:url({:get_img(C('COM_DIBULOGO'))}) no-repeat;width:147px;margin-top:80px;"></a>
+      <!--底部导航-->
+      <div class="foot-nav clearfix">
+        <!-- foot logo -->
+       
+
+        <dl class="fl foot-contact">
+          <i class="line"></i>
+          <dt style="margin-top:20px;">
+		  <cms:cate id="43">
+            <a href="{$data.href}">
+              {$data.title}
+            </a>
+		 </cms:cate>	
+          </dt>
+          <dd style="margin-top:20px;">
+            <!---二级导航-->
+            <a class="text-ellipsis" >
+              电话：{:C('COM_TEL.0')}  
+            </a>
+
+            <a class="text-ellipsis" style="width:500px;">
+             Q Q:{:C('COM_QQ.0')}  
+            </a>
+			
+			 <a class="text-ellipsis" style="margin-top:10px;width:600px;">
+            地址:{:C('COM_ADDRESS.0')}  </a>
+          </dd>
+        </dl>
+
+        <!-- 社会化 -->
+        <dl class="foot-social fr">
+          <i class="line"></i>
+         
+          <dd class="text-center" style="margin-top:30px;">
+            <a><img src="{:get_erweima()}"></a>
+          </dd>
+		   <dt>
+            <a href="javascript:;">
+              微信公众号
+            </a>
+          </dt>
+        </dl>
+        <!-- //社会化 -->
+      </div>
+
+    </div>
+    <div class="flinks-content">
+      <div class="container w-980">
+        
+                  友情链接:
+				  <cms:link result="data" limit="9999">
+					<a href="{$data.url}" title="{$data.title}">{$data.title}</a> &nbsp;&nbsp;
+				</cms:link>  
+               
+        </div> 
+      </div>
+      
+    </div>
+ <div class="copy bg-f9f9f9">
+        <div class="container w-980 t-c" style="text-align:center;">
+         {:C('WEB_SITE_COPYRIGHT.0')} <span class="beian">{:C('WEB_SITE_ICP')}</span>   {:C('COM_SITE_CODE')}  
+<style>
+.jishuzhichi{color:#666;}
+.jishuzhichi a{color:#666;text-decoration:none;}
+.jishuzhichi a:hover{color: #666;text-decoration:none;}
+</style>
+        
+        </div>
+    </div> 
+  </footer>

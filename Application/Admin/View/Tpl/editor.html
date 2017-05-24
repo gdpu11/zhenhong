@@ -1,0 +1,31 @@
+
+<if condition=" $options['tmpl_type'] ">
+
+    <div class="form-item">
+        <label class="item-label">
+            {$options['title']}
+
+            <eq name="options['is_must']" value="1"><span class="is_must"> (必填)</span></eq>
+            <span class="check-tips"><notempty name="options['remark']">（{$options['remark']}）</notempty></span>
+
+        </label>
+        <div class="controls">
+
+            <textarea name="{$name}">{$value}</textarea>
+            {:hook('adminArticleEdit', array('name'=>$name,'value'=>$value))}
+
+        </div>
+    </div>
+
+
+    <else/>
+
+
+    <label class="">
+        <textarea name="{$name}">{$value}</textarea>
+        {:hook('adminArticleEdit', array('name'=>$name,'value'=>$value))}
+    </label>
+
+</if>
+
+

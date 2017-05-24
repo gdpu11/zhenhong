@@ -1,0 +1,91 @@
+<input type="file" id="upload_picture_{$name}">
+
+<if condition="empty($options['is_array'])">
+    <input type="hidden" name="{$name}" id="cover_id_{$name}" value="{$value}"/>
+    <else />
+    <input type="hidden" name="{$options['is_array']}[{$name}]" id="cover_id_{$name}" value="{$value}"/>
+</if>
+
+
+<div class="upload-img-box" id="delete_img_{$name}" >
+    <notempty name="value">
+        <div class="upload-pre-item picture div_img">
+            <img src="{$value|get_cover='path'}"/>
+            <a href="javascript:void(0)" class="img_delete" ></a>
+        </div>
+        <!--<span id="img_cropperjs_{$name}" src="{$value|get_cover='path'}">裁剪图片</span>-->
+    </notempty>
+</div>
+
+<script type="text/javascript">
+
+    function bind_delete_img_{$name}(){
+        $("#delete_img_{$name}").hover(
+                function () {
+                    $(this).find('a').show();
+                },
+                function () {
+                    $(this).find('a').hide();
+                }
+        );
+
+        $("#delete_img_{$name}").find('a').click(function () {
+            $(this).parent().remove();
+            $("#cover_id_{$name}").val('');
+        });
+
+        //绑定裁剪图片
+
+        $("#img_cropperjs_{$name}").click(function(){
+
+            var url = $(this).attr('src');
+            url = "/tools/cropperjs?path=" +  url ,
+            layer.open({
+                type: 2,
+                area: ['700px', '530px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: url
+            });
+
+        });
+
+
+    }
+    bind_delete_img_{$name}();
+
+    //上传图片
+    /* 初始化上传插件 */
+    $("#upload_picture_{$name}").uploadify({
+        "height"          : 30,
+        "swf"             : "__STATIC__/uploadify/uploadify.swf",
+        "fileObjName"     : "download",
+        "buttonText"      : "上传图片",
+        "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+        "width"           : 120,
+        'removeTimeout'	  : 1,
+        'fileTypeExts'	  : '*.jpg; *.png; *.gif;*.ico;',
+        "onUploadSuccess" : uploadPicture{$name},
+    'onFallback' : function() {
+        alert('未检测到兼容版本的Flash.');
+    }
+    });
+    function uploadPicture{$name}(file, data){
+        var data = $.parseJSON(data);
+        var src = '';
+        if(data.status){
+            $("#cover_id_{$name}").val(data.id);
+            src = data.url || '__ROOT__' + data.path
+            $("#cover_id_{$name}").parent().find('.upload-img-box').html(
+                    '<div class="upload-pre-item picture div_img"><img src="' + src + '"/><a href="javascript:void(0)" class="img_delete" ></a></div>'
+            );
+        } else {
+            updateAlert(data.info);
+            setTimeout(function(){
+                $('#top-alert').find('button').click();
+                $(that).removeClass('disabled').prop('disabled',false);
+            },1500);
+        }
+        bind_delete_img_{$name}();
+    }
+</script>

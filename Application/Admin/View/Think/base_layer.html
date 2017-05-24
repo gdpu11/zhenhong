@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{$meta_title}|{:C('CMS_COM_TITLE',null,'小兵企业官网管理平台')}后台</title>
+    <link href="__ROOT__/Public/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/module.css">
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/{$Think.config.COLOR_STYLE}.css" media="all">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__STATIC__/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+
+
+
+    <script type="text/javascript" src="__STATIC__/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="__JS__/jquery.mousewheel.js"></script>
+
+
+    <!--fullcalendar-3.1.0-->
+    <link rel="stylesheet" type="text/css" href="__STATIC__/fullcalendar-3.1.0/fullcalendar.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/fullcalendar-3.1.0/fullcalendar.print.css" media='print'>
+    <script src='__STATIC__/fullcalendar-3.1.0/lib/moment.min.js'></script>
+    <script src='__STATIC__/fullcalendar-3.1.0/fullcalendar.min.js'></script>
+    <!--layer-->
+    <script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS__/admin.js"></script>
+
+    <!--<![endif]-->
+    <block name="style">
+        <style>
+            body {
+                padding: 0;
+            }
+            #top-alert{
+                top: 5px;
+                left: 20px;
+                margin-top: 0px;
+            }
+        </style>
+    </block>
+</head>
+<body>
+
+<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+    <button class="close fixed" style="margin-top: 4px;">×</button>
+    <div class="alert-content">这是内容</div>
+</div>
+        <div id="main" class="main">
+            <block name="body"> </block>
+        </div>
+
+
+        <!-- /内容区 -->
+        <script type="text/javascript">
+            (function(){
+                var ThinkPHP = window.Think = {
+                    "ROOT"   : "__ROOT__", //当前网站地址
+                    "APP"    : "__APP__", //当前项目地址
+                    "PUBLIC" : "__PUBLIC__", //项目公共目录地址
+                    "DEEP"   : "{:C('URL_PATHINFO_DEPR')}", //PATHINFO分割符
+                    "MODEL"  : ["{:C('URL_MODEL')}", "{:C('URL_CASE_INSENSITIVE')}", "{:C('URL_HTML_SUFFIX')}"],
+                    "VAR"    : ["{:C('VAR_MODULE')}", "{:C('VAR_CONTROLLER')}", "{:C('VAR_ACTION')}"]
+                }
+            })();
+        </script>
+        <script type="text/javascript" src="__STATIC__/think.js"></script>
+        <script type="text/javascript" src="__STATIC__/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="__JS__/common.js"></script>
+        <block name="script"></block>
+        <script type="text/javascript">
+            +function(){
+
+                $('.cleanCache').click(function(){
+                    var $type = 'Runtime';
+                    $.post('{:U("Cache/cache")}',{type:$type},function(data){
+                        alert("缓存清理成功");
+                    });
+                });
+
+                var $window = $(window), $subnav = $("#subnav"), url;
+                $window.resize(function(){
+                    $("#main").css("min-height", $window.height() - 130);
+                }).resize();
+
+                /* 左边菜单显示收起 */
+                var $subnav = $("#subnav");
+
+                $subnav.on('click','.btn-handle',function(){
+
+                    _this = $(this);
+                    //展开与关闭
+                    if(!_this.hasClass('on')){
+                        //展开
+
+                        if(!_this.parents('.sub_menu').hasClass('current')){
+                            _this.parents('.sub_menu').addClass('on');
+                        }
+
+                        _this.addClass('on');//状态监听
+                        _this.removeClass('fa-plus').addClass('fa-minus');//更改图标
+                        _this.parent().siblings().stop().fadeIn(300);
+
+                    }else{
+                        if(!_this.parents('.sub_menu').hasClass('current')){
+                            _this.parents('.sub_menu').removeClass('on');
+                        }
+                        _this.removeClass('on');//状态监听
+                        _this.addClass('fa-plus').removeClass('fa-minus');//更改图标
+                        _this.parent().siblings().stop().fadeOut(300);
+
+                    }
+
+                    return false ;
+                })
+
+                /* 左边菜单高亮 */
+                url = window.location.pathname + window.location.search;
+                url = url.replace(/(\/(p)\/\d+)|(&p=\d+)|(\/(id)\/\d+)|(&id=\d+)|(\/(group)\/\d+)|(&group=\d+)/, "");
+                console.log(url);
+                var current_a = $subnav.find("a[href='" + url + "']");
+                current_a.parent().addClass("current");
+
+                //查找一级导航
+                //var current_a_parent = current_a.parents('.sub_menu').addClass("current");
+                //展开所有子类
+                //current_a_parent.find('ul').slideDown();
+                //初始化高亮
+                $(document).ready(function(){
+                    $subnav.find('.current').parents('.sub_menu').addClass("current");
+                    $subnav.find('.current').find('.btn-handle').click();
+                })
+
+
+
+
+                /* 头部管理员菜单 */
+                $(".user-bar").mouseenter(function(){
+                    var userMenu = $(this).children(".user-menu ");
+                    userMenu.removeClass("hidden");
+                    clearTimeout(userMenu.data("timeout"));
+                }).mouseleave(function(){
+                    var userMenu = $(this).children(".user-menu");
+                    userMenu.data("timeout") && clearTimeout(userMenu.data("timeout"));
+                    userMenu.data("timeout", setTimeout(function(){userMenu.addClass("hidden")}, 100));
+                });
+
+                /* 表单获取焦点变色 */
+                $("form").on("focus", "input", function(){
+                    $(this).addClass('focus');
+                }).on("blur","input",function(){
+                    $(this).removeClass('focus');
+                });
+                $("form").on("focus", "textarea", function(){
+                    $(this).closest('label').addClass('focus');
+                }).on("blur","textarea",function(){
+                    $(this).closest('label').removeClass('focus');
+                });
+                //frame界面操作
+                (function(){
+                    var s=0;
+                    framebar = $('#frame-bar').find('i');
+                    framebar.on('click',function(e){
+                        s++;
+                        if(s==1){
+                            $('body').removeClass('ui-frame-style-'+(s-1)).addClass('ui-frame-style-'+s);
+                            $('.sidebar').removeClass('ui-frame-style-'+(s-1)).addClass('ui-frame-style-'+s);
+                        }
+                        if(s==2){
+                            $('body').removeClass('ui-frame-style-'+(s-1)).addClass('ui-frame-style-'+s);
+                            $('.sidebar').removeClass('ui-frame-style-'+(s-1)).addClass('ui-frame-style-'+s);
+                        }
+                        if(s==3){
+                            s=0;
+                            $('body').removeClass('ui-frame-style-'+2);
+                            $('.sidebar').removeClass('ui-frame-style-'+2);
+                        }
+
+                        console.log(s-1);
+                    })
+                })()
+
+                //虚拟滚动条
+                $("#subnav").slimScroll({
+                    width: 'auto', //可滚动区域宽度
+                    height: '95%', //可滚动区域高度
+                    size: '6px', //组件宽度
+                    color: '#000', //滚动条颜色
+                    position: 'right', //组件位置：left/right
+                    distance: '0px', //组件与侧边之间的距离
+                    start: 'top', //默认滚动位置：top/bottom
+                    opacity: .4, //滚动条透明度
+                    alwaysVisible: false, //是否 始终显示组件
+                    disableFadeOut: true, //是否 鼠标经过可滚动区域时显示组件，离开时隐藏组件
+                    railVisible: true, //是否 显示轨道
+                    railColor: '#333', //轨道颜色
+                    railOpacity: .2, //轨道透明度
+                    railDraggable: true, //是否 滚动条可拖动
+                    railClass: 'slimScrollRail', //轨道div类名
+                    barClass: 'slimScrollBar', //滚动条div类名
+                    wrapperClass: 'slimScrollDiv', //外包div类名
+                    allowPageScroll: true, //是否 使用滚轮到达顶端/底端时，滚动窗口
+                    wheelStep: 20, //滚轮滚动量
+                    touchScrollStep: 200, //滚动量当用户使用手势
+                    borderRadius: '7px', //滚动条圆角
+                    railBorderRadius: '7px' //轨道圆角
+                });
+
+            }();
+        </script>
+
+</body>
+</html>

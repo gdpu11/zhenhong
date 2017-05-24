@@ -1,0 +1,53 @@
+<!--头部开始-->
+<div class="top_bg">
+	<div class="top">
+    	<div class="welcome">{:C('WEB_SITE_TITLE')}欢迎您！</div>
+        <div class="website"><!-- <a href="/">中文版</a> | <a href="/en/">ENGLISH</a> --></div>
+    </div>
+</div>
+<div class="header">
+    	<div class="header_top clearfix">
+        	<div class="logo fl" style="width:320px;"><a href="/"><img src="{:get_logo()}"></a></div>
+            <div class="top-ad fl" style="color:#153951;width:330px;margin-top:30px;">
+                链接世界  畅通未来
+				<br /><br />Link To The Future Of The World
+            </div>
+            <div class="top-search fr" style="margin-top:30px;">
+                <div class="tel">
+                    <!-- <img src="{:get_img(C('PC_TEL'))}" alt="服务电话" /> -->
+                    <i class="icon iconfont">&#xe60d;</i><span>{:C("COM_TEL.0")}</span>
+                </div>
+                <form class="form-search">
+                    <input class="form-control" placeholder="请输入关键字" />
+                    <button type="submit"><i class="icon iconfont">&#xe61c;</i></button>
+                </form>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="navgation" >
+            <ul class="nav clearfix" id="navigation" role="navigation" effect="slideDown">
+                   <li><a href="/">首页</a></li>
+				<cms:cate pid="0">
+				    <li class="nav_line"></li>
+					<li>
+						<a href="{$data.href}">{$data.title}
+						<notempty name="data['_child']">
+						  <span class="nav_triangle"></span>
+						</notempty>
+						</a>
+						<!---二级导航判断-->
+						<notempty name="data['_child']">
+						<ul class="sub_menu nav-sub">
+						<!---二级导航-->
+						<volist name="data['_child']" id="child">
+					       <li> <a href="{$child.href}">{$child.title}</a></li>
+						</volist>
+						</ul>
+						</notempty>
+					</li>
+			    </cms:cate>
+				
+              </ul>
+      </div>
+    </div>
+<!--头部结束-->

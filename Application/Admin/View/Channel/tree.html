@@ -1,0 +1,6 @@
+<volist name="tree" id="vo">
+    <option value="{$vo.id}" title="{$vo.title}"  name="{$vo.name}"><for start="0" end="$vo['level']">--</for>{$vo.title}</option>
+		<notempty name="vo['_']">
+				{:R('Channel/tree', array($vo['_']))}
+		</notempty>
+</volist>

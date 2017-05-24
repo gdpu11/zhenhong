@@ -1,0 +1,21 @@
+﻿<extend name="Public/base"/>
+<block name="content">
+               	 	<div class="mod_con">
+						<dl class="list_article">
+                        	<dt>
+                            	<h2>{$info.title}</h2>
+                        	</dt>
+                            <dd class="con_1">发布人：{:C('WEB_SITE_TITLE')}  &nbsp;&nbsp;&nbsp;&nbsp;发布时间：{$info.create_time|date='Y-m-d H:i',###}</dd>
+                            <dd class="con_2">
+                            	  {$info.content}
+                            </dd>
+                            <dd>
+   								<cms:prev result="data">上一个：<a href="{$data.href}">{$data.title|_substr=18,'...'}</a></cms:prev>
+								<cms:next result="data">下一个：<a href="{$data.href}">{$data.title|_substr=18,'...'}</a></cms:next>
+								
+    						</dd>
+                            
+                         </dl>
+   	       		    </div>
+                   
+</block>

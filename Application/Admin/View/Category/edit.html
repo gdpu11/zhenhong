@@ -1,0 +1,307 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title">
+		<h2>{:isset($info['id'])?'编辑':'新增'}分类</h2>
+	</div>
+	<div class="tab-wrap">
+		<ul class="tab-nav nav">
+			<li data-tab="tab1" class="current"><a href="javascript:void(0);">基 础</a></li>
+			<li data-tab="tab2"><a href="javascript:void(0);">SEO设置</a></li>
+            <li data-tab="tab3"><a href="javascript:void(0);">高级</a></li>
+		</ul>
+		<div class="tab-content">
+			<form action="{:U()}" method="post" class="form-horizontal">
+				<!-- 基础 -->
+				<div id="tab1" class="tab-pane in tab1">
+					<div class="form-item">
+						<label class="item-label">上级分类<span class="check-tips">(无:代表顶级分类)</span></label>
+						<div class="controls">
+							<input type="text" class="text input-large" disabled="disabled" value="{$category['title']|default='无'}"/>
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">
+							分类名称<span class="is_must"> (必填)</span><span class="check-tips">（名称不能为空）</span>
+						</label>
+						<div class="controls">
+							<input type="text" name="title" class="text input-large" value="{$info.title|default=''}">
+						</div>
+					</div>
+                    <div class="form-item">
+                        <label class="item-label">
+                            英文分类名称<span class="check-tips"></span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="title_en" class="text input-large" value="{$info.title_en|default=''}">
+                        </div>
+                    </div>
+
+
+                    <input type="hidden" name="type" id="type" value="{$info['type']}"  /><!--分类类型-->
+                    <input type="hidden" name="model" id="model" value="{$info['model']}"  /><!--文档模型-->
+                    <input type="hidden" name="template_lists" id="template_lists"  value="{$info.template_lists|default=''}">
+                    <input type="hidden" name="template_detail" id="template_detail" value="{$info.template_detail|default=''}">
+                    <input type="hidden" name="template_page" id="template_page" value="{$info.template_page|default=''}">
+
+                    <div class="form-item">
+						<label class="item-label">分类类型<span class="is_must"> (必填)</span><span class="check-tips">（列表支持发布的文档模型）</span></label>
+						<div class="controls">
+
+                            <volist name=":read_json_ini()" id="list">
+                                <label class="checkbox">
+                                    <input type="radio" name="cid" <if condition=" $list['cid'] eq $info['cid'] ">checked</if> value="{$list.cid}" typeid="{$list.type}"  modelid="{$list.model}" tmpl_list="{$list.tmpl_list}" tmpl_detail="{$list.tmpl_detail}" tmpl_page="{$list.tmpl_page}" >{$list.name}
+                                </label>
+                            </volist>
+						</div>
+					</div>
+
+					
+
+
+                    <div class="form-item cid5">
+                        <label class="item-label">链接地址<span class="check-tips">（比如：http://www.xiaobing360.com）</span></label>
+                        <div class="controls">
+                            <input type="text" name="url" id="select_url" class="text input-large" value="{$info.url|default=''}">
+                            <select id="select_category">
+                                <option value="">选择栏目</option>
+                                <volist name=":get_category_list()" id="vo">
+
+
+                                    <switch name="vo.type" >
+                                        <case value="4">
+                                            <option value="page/{$vo.id}">{$vo.title}</option>
+                                        </case>
+
+                                        <default />
+                                        <option value="lists/{$vo.id}">{$vo.title}</option>
+                                    </switch>
+
+
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-item cid2">
+                        <label class="item-label">
+                            列表行数
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="list_row" class="text input-small" value="{$info.list_row|default=10}">
+                        </div>
+                    </div>
+				</div>
+
+				<!-- 高级 -->
+				<div id="tab2" class="tab-pane tab2">
+                    <div class="form-item">
+                        <label class="item-label">
+                            分类标识<span class="check-tips">（可以为空, 分类标识不重复,必须英文字母,用作替换分类ID,例如:标识如果为 about 原来 http://域名/1.html 替换后 http://域名/about.html）作用:美观 利于SEO</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="name" class="text input-large" value="{$info.name|default=''}">
+                        </div>
+                    </div>
+
+					<div class="form-item">
+						<label class="item-label">网页标题</label>
+						<div class="controls">
+							<input type="text" name="meta_title" class="text input-large" value="{$info.meta_title|default=''}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">关键字</label>
+						<div class="controls">
+							<label class="textarea input-large">
+								<textarea name="keywords">{$info.keywords|default=''}</textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">描述</label>
+						<div class="controls">
+							<label class="textarea input-large">
+								<textarea name="description">{$info.description|default=''}</textarea>
+							</label>
+						</div>
+					</div>
+
+				</div>
+
+                <div id="tab3" class="tab-pane tab3">
+
+                    <div class="controls">
+                        <label class="item-label">分类图标<span class="check-tips">（分类图标）</span></label>
+                        {:R("Tpl/upload_image",array("icon",$info['icon']))}
+                    </div>
+                    <!---大于此版本才能使用-->
+                    <if condition="LONG_VERSION egt 2016428">
+                    <div class="controls">
+                        <label class="item-label">分类缩略图<span class="check-tips">（分类缩略图）</span></label>
+                        {:R("Tpl/upload_image",array("cover",$info['cover']))}
+                    </div>
+                    <div class="controls">
+                        <label class="item-label">分类横幅<span class="check-tips">（分类横幅(banner)图片）</span></label>
+                        {:R("Tpl/upload_image",array("banner",$info['banner']))}
+                    </div>
+                    </if>
+
+                    <div class="form-item">
+                        <label class="item-label">
+                            扩展内容一<span class="check-tips">（当需要时,填写的扩展内容,比如:阿里图标内容，扩展的介绍等一些自定义内容）</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="kuozhan1" class="text input-large" value="{$info.kuozhan1|default=''}">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label class="item-label">
+                            扩展内容二<span class="check-tips">（当需要时,填写的扩展内容,比如:阿里图标内容，扩展的介绍等一些自定义内容）</span>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="kuozhan2" class="text input-large" value="{$info.kuozhan2|default=''}">
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="item-label">是否在导航显示<span class="check-tips">（针对前台导航）</span></label>
+                        <div class="controls">
+                            <select name="hidden">
+                                <option value="1">可见</option>
+                                <option value="0">不可见</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label class="item-label">
+                            内容<span class="check-tips"></span>
+                        </label>
+                        <div class="controls">
+
+                            <label class="textarea">
+                                <textarea name="content">{$info.content}</textarea>
+                                {:hook('adminArticleEdit', array('name'=>'content','value'=>$info['content']))}
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-item hidden">
+
+                    <input type="hidden" name="display" value="1"  /><!--可见性-->
+                    <input type="hidden" name="allow_publish" value="1"  /><!--是否允许发布内容-->
+                    <input type="hidden" name="check" value="0"  /><!--是否审核-->
+
+                    <!--子文档绑定绑定模型-->
+                    <volist name=":get_document_model()" id="list">
+                        <input type="checkbox" name="model_sub[]" value="{$list.id}" checked>{$list.title}
+                    </volist>
+
+
+                </div>
+
+
+				<div class="form-item">
+					<input type="hidden" name="id" value="{$info.id|default=''}">
+					<input type="hidden" name="pid" value="{:isset($category['id'])?$category['id']:$info['pid']}">
+					<button type="submit" id="submit" class="btn submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+					<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		<present name="info.id">
+		Think.setValue("allow_publish", {$info.allow_publish|default=1});
+		Think.setValue("check", {$info.check|default=0});
+
+        Think.setValue("hidden", {$info.hidden|default=1 });
+
+		/*Think.setValue("model[]", {$info.model|json_encode} || [1]);*/
+		Think.setValue("model_sub[]", {$info.model_sub|json_encode} || [1]);
+
+
+
+		/*Think.setValue("type[]", {$info.type|json_encode} || [2]);*/
+		Think.setValue("display", {$info.display|default=1});
+		Think.setValue("reply", {$info.reply|default=0});
+		Think.setValue("reply_model[]", {$info.reply_model|json_encode} || [1]);
+		</present>
+
+        /*<if condition=" empty( $category['type'] )">
+            Think.setValue("type", {$info.type|default=2});
+        Think.setValue("model", {$info.model|default=2});
+
+        <else />
+        Think.setValue("type", {$category.type|default=2});
+        Think.setValue("model", {$category.model|default=2});
+
+        </if>*/
+
+		$(function(){
+			showTab();
+			$("input[name=reply]").change(function(){
+				var $reply = $(".form-item.reply");
+				parseInt(this.value) ? $reply.show() : $reply.hide();
+			}).filter(":checked").change();
+
+            $('#select_category').change(function(){
+                $('#select_url').val($(this).val());
+            });
+
+		});
+		//导航高亮
+		highlight_subnav('{:U('Category/index')}');
+
+        //By.jingshuixian
+        //文档类型切换
+        var name = 'cid';
+        var input = $("[name='" + name + "']");
+
+        input.change(function(){ changeTab(this); });
+
+
+        function changeTab(obj){
+
+            if($(obj).length > 0){
+                $("#type").val($(obj).attr('typeid'));
+                $("#model").val($(obj).attr('modelid'));
+                $("#template_lists").val($(obj).attr('tmpl_list'));
+                $("#template_detail").val($(obj).attr('tmpl_detail'));
+                $("#template_page").val($(obj).attr('tmpl_page'));
+            }
+            //alert(1);
+            input.each(function() {
+
+                var typeid = $(this).attr('typeid');
+                if(this.checked){
+                    if (typeid == 2) {
+                        console.log('.' + name + typeid);
+                        $('.' + name + '2').show();
+                        $('.' + name + '5').hide();
+                    }else if(typeid == 5){
+                        $('.' + name + '2').hide();
+                        $('.' + name + '5').show();
+                    }else{
+                        $('.'+name+ '2').hide();
+                        $('.'+name+ '5').hide();
+                    }
+                }
+                /*if(this.checked){
+                    $('.'+name+ typeid).show();
+                }else{
+                    $('.'+name+ typeid).hide();
+                }*/
+            });
+        }
+        changeTab();
+        //By.jingshuixian end
+	</script>
+</block>

@@ -1,0 +1,45 @@
+
+<!--幻灯-->
+   <if condition="$category['id'] eq 14">
+   <div class="mod_sub_banner" style="background:url({$category.banner}) no-repeat center;">
+    </div>
+   <else />
+	<div class="mod_sub_banner" style="background:url({$topCategory.banner}) no-repeat center;">
+    </div>
+	</if>
+<!--幻灯end-->
+    <div class="content">
+        <div class="sub_con">
+            <div class="sub_con_l">
+                <div class="list_title">
+                    <div class="list_title_bg">
+                   		 <strong>{$topCategory.title}</strong>
+                    </div>
+                </div>
+                <div class="sub_l_list">
+                	<include file="Public/lefter"/>
+                    
+                </div>    
+ 		     </div>
+          <div class="sub_con_r">
+       		    <div class="sub_con_r_top">
+                	<span class="sub_right_title f_l">{$category.title}</span>
+					<include file="Public/pos"/>
+                </div>
+                <div class="sub_con_r_art line-H18">
+				<div class="article_content" style="margin: 10px 8px 20px; padding: 0px; font-size: 14px; line-height: 28px; color: rgb(83, 83, 83); font-family: 宋体;">
+					<div id="MyContent" style="margin: 0px; padding: 0px;">
+						<block name="content">
+							public/body.html
+						</block>
+						
+						</div>
+					<div>
+						&nbsp;</div>
+				</div>
+						<br />
+
+                </div>
+          </div>
+        </div>
+    </div>

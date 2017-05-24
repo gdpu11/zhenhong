@@ -1,0 +1,333 @@
+﻿<extend name="Public/base"/>
+
+<block name="body">
+    <!--幻灯-->
+    <div id="slideBox" class="slideBox">
+			<div class="hd">
+				<ul><li></li></ul>
+			</div>
+			<div class="bd">
+				<ul>
+				<cms:banner result="data">
+					<li style="background:url({$data.img}) no-repeat center top">
+            <a href="{$data.url|default='javascript:;'} " target="_blank"></a>
+          </li>
+				</cms:banner> 
+				</ul>
+			</div>
+			<!-- 前/后按钮 -->
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+		</div>
+		<script type="text/javascript">
+		jQuery("#slideBox").slide({mainCell:".bd ul",titCell:".hd ul",autoPage:true,autoPlay:true});
+		</script>
+    <!--幻灯//-->
+
+    <div class="content">
+	
+	
+<!-- 	<div class="guojia"> 
+                <div id="wrapBox1">
+                    <ul id="count1">
+						<cms:cate pid="1" limit="14">
+                        
+						<li>
+							<a href="{$data.href}" target="_blank" title="{$data.title}">
+								<img src="{$data.cover}" width="59px" height="25px">
+							
+							<a href="{$data.href}" target="_blank" title="{$data.title}">
+							{$data.title}
+							</a>
+						</li>
+						
+						
+						</cms:cate>  
+					</ul>
+                </div>
+    </div> -->
+	
+	<style>
+	.guojia{
+    margin: 0 auto;
+    width: 980px;
+    height: 100px;
+}
+.guojia ul li{
+    width:60px;
+    height: 25px;
+    padding-top: 25px;
+    <!-- line-height: 2.4em; -->
+    font-size: 14px;
+    float: left;
+    margin-right: 16px;
+    text-align: center;
+}
+
+.guojia ul li:last-child{
+margin-right: 0px;
+}
+	</style>
+      <!--服务项目-->
+      <!-- <div class="service_item">
+        <div class="fast-nav">
+          <ul class="icon-nav clearfix">
+		  
+			<cms:cate pid="1" limit="8">
+              <li class="transition">
+                  <a href="{$data.href}">
+                      <i class="icon transition" style="background-image: url({$data.cover});">
+                      </i>
+                      <h4>
+                          {$data.title}
+                      </h4>
+                  </a>
+              </li>
+            </cms:cate>  
+          </ul>
+        </div>
+
+      </div> -->
+      
+      <!--服务项目end-->
+      <div class="index_con">
+	   <!--项目介绍-->
+        <div class="index_con_2">
+          <div class="Team">
+            <dl>
+              <cms:cate id="3">
+                <dt>
+                  <a class="index_title f_l" href="{$data.href}">
+                    {$data.title} 
+                    <span>
+                      {$data.title_en}
+                    </span>
+                  </a>
+                  <a class="link_more f_r" href="{$data.href}" title="更多">
+                  </a>
+                </dt>
+              </cms:cate>
+              <dd>
+                <ul>
+                  <cms:article cate="3" son="true" limit="4">
+                    <li>
+                      <div class="img_Mask">
+                        <a href="{$data.href}">
+                          <img width="220" height="298" src="{$data.cover}" />
+                        </a>
+                        <div class="team_img_title">
+                          <span>
+                            <a href="{$data.href}">
+                              {$data.title|_substr=18}
+                            </a>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  </cms:article>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+	  
+        <div class="index_con_1">
+          <!--资讯-->
+          
+            <div class="Introduction  f_l">
+				<dl>
+              <cms:cate id="14">
+                <dt>
+                  <a class="index_title f_l" href="{$data.href}">
+                    {$data.title} 
+                    <span>
+                      {$data.title_en}
+                    </span>
+                  </a>
+                  <a class="link_more f_r" href="{$data.href}" title="更多">
+                  </a>
+                </dt>
+              </cms:cate>
+              <dd>
+                <ul>
+                  <cms:article cate="14" son="true" limit="1">
+                    <li class="clearfix" >
+                      <div class="news_img f_l">
+                        <a href="{$data.href}">
+                          <img width="107" height="71" src="{$data.cover}" />
+                        </a>
+                      </div>
+                      <div class="news_intro f_r">
+                        <a href="{$data.href}">
+                          {$data.title|_substr=25}
+                        </a>
+                        <p class="f_r dataTime">
+                          {$data.create_time|date='Y-m-d',###}
+                        </p>
+                      </div>
+                    </li>
+                  </cms:article>
+                  <li>
+                    <ul>
+                      <cms:article cate="14" son="true" limit="8">
+                        <li class="clearfix">
+                          <a href="{$data.href}" class="fl box-ellipsis">
+                            {$data.title|_substr=16,'...'}
+                          </a>
+                          <time class="dataTime fr">
+                            {$data.create_time|date='Y-m-d',###}
+                          </time>
+                        </li>
+                      </cms:article>
+                    </ul>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          
+			</div>
+     
+          <!--案例-->
+          <div class="Announcement  f_l">
+            <dl>
+              <cms:cate id="15">
+                <dt>
+                  <a class="index_title f_l" href="{$data.href}">
+                    {$data.title} 
+                    <span>
+                      {$data.title_en}
+                    </span>
+                  </a>
+                  <a class="link_more f_r" href="{$data.href}" title="更多">
+                  </a>
+                </dt>
+              </cms:cate>
+              <dd>
+                <ul>
+                  <cms:article cate="15" son="true" limit="1">
+                    <li class="clearfix" >
+                      <div class="news_img f_l">
+                        <a href="{$data.href}">
+                          <img width="107" height="71" src="{$data.cover}" />
+                        </a>
+                      </div>
+                      <div class="news_intro f_r">
+                        <a href="{$data.href}">
+                          {$data.title|_substr=16,'...'}
+                        </a>
+                        <p class="f_r dataTime">
+                          {$data.create_time|date='Y-m-d',###}
+                        </p>
+                      </div>
+                    </li>
+                  </cms:article>
+                  <li>
+                    <ul>
+                      <cms:article cate="15" son="true" limit="8">
+                        <li class="clearfix">
+                          <a href="{$data.href}" class="fl box-ellipsis">
+                            {$data.title|_substr=18}
+                          </a>
+                          <time class="dataTime fr">
+                            {$data.create_time|date='Y-m-d',###}
+                          </time>
+                        </li>
+                      </cms:article>
+                    </ul>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+          <!--活动-->
+          <div class="news  f_r">
+            <dl>
+              <cms:cate id="16">
+                <dt>
+                  <a class="index_title f_l" href="{$data.href}">
+                    {$data.title} 
+                    <span>
+                      {$data.title_en}
+                    </span>
+                  </a>
+                  <a class="link_more f_r" href="{$data.href}" title="更多">
+                  </a>
+                </dt>
+              </cms:cate>
+              <dd>
+                <ul>
+                  <cms:article cate="16" son="true" limit="1">
+                    <li class="clearfix">
+                      <div class="news_img f_l">
+                        <a href="{$data.href}">
+                          <img width="107" height="71" src="{$data.cover}" />
+                        </a>
+                      </div>
+                      <div class="news_intro f_r">
+                        <a href="{$data.href}">
+                          {$data.title|_substr=16,'...'}
+                        </a>
+                        <p class="f_r dataTime">
+                          {$data.create_time|date='Y-m-d',###}
+                        </p>
+                      </div>
+                    </li>
+                  </cms:article>
+                  <li>
+                    <ul>
+                      <cms:article cate="16" son="true" limit="1,8">
+                         <li class="clearfix">
+                          <a href="{$data.href}" class="fl box-ellipsis">
+                            {$data.title|_substr=18}
+                          </a>
+                          <time class="dataTime fr">
+                            {$data.create_time|date='Y-m-d',###}
+                          </time>
+                        </li>
+                      </cms:article>
+                    </ul>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+       
+       
+
+
+	   <!--案例展示-->	   	   	   	           
+	   
+	   <div class="index_con_2">          
+	   <div class="Team">            <dl>              
+	   <cms:cate id="2">                <dt> 
+	   <a class="index_title f_l" href="{$data.href}"> 
+	   {$data.title}                     <span>   
+	   {$data.title_en}                    </span>    
+	   </a>                 
+	   <a class="link_more f_r" href="{$data.href}" title="更多">
+	   </a>                </dt> 
+	   </cms:cate>              <dd>  
+	   <ul>                 
+	   <cms:article cate="2" son="true" limit="4"> 
+	   <li>                      <div class="img_Mask">   
+	   <a href="{$data.href}">                          
+	   <img width="220" height="298" src="{$data.cover}" />  
+	   </a>                        <div class="team_img_title">
+	   <span>                            <a href="{$data.href}">
+	   {$data.title|_substr=18}                            </a>
+	   </span>                        
+	   </div>
+	   </div>
+	   </li>
+	   </cms:article> 
+	   </ul>
+	   </dd>
+	   </dl>
+	   </div>        
+	   </div>	  
+	   </div>
+    </div>
+    <!--合作伙伴--> 
+	
+</block>
